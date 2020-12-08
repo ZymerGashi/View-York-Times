@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{int bookNr = 0; }
+
+@for (int i = 1; i <= @ViewBag.Message.numberOfRows(); i++)
+{
+    <div class="row" style="padding-bottom:2em">
+        @for (int j = 1; j <= 3; j++)
+        {
+            if (bookNr < @ViewBag.Message.results.Count)
+            {
+                <div class="col-sm-4" style="box-shadow:rgba(128, 128, 128,0.05) 10px 10px 10px inset;">
+                    <div class="card" style="width: 18rem; ">
+                        <img class="card-img-top" src="@ViewBag.Message.results[bookNr].multimedia.src" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title"> @ViewBag.Message.results[bookNr].display_title</h5>
+                            <h6 class="card-title"> <i>Rating:  @ViewBag.Message.results[bookNr].mpaa_rating</i></h6>
+
+                            <p class="card-text">@ViewBag.Message.results[bookNr].summary_short</p>
+                            <a href="@ViewBag.Message.results[bookNr].link.url" class="btn btn-primary" target="_blank">Check the review in details!</a>
+                        </div>
+                    </div>
+                </div>
+            }
+            bookNr++;
+        }
+    </div>
+}

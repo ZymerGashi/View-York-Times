@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@{int bookNr = 0; }
+
+@for (int i = 1; i <= @ViewBag.Message.results.numberOfRows(); i++)
+{
+    <div class="row" style="padding-bottom:2em">
+        @for (int j = 1; j <= 3; j++)
+        {
+            if (bookNr < @ViewBag.Message.results.books.Count)
+            {
+                <div class="col-sm-4" style="box-shadow:rgba(128, 128, 128,0.05) 10px 10px 10px inset;">
+                    <div class="card" style="width: 18rem; ">
+                        <img class="card-img-top" src="@ViewBag.Message.results.books[bookNr].book_image" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title"> @ViewBag.Message.results.books[bookNr].title</h5>
+                            <h6 class="card-title"> <i>by @ViewBag.Message.results.books[bookNr].author</i></h6>
+
+                            <p class="card-text">@ViewBag.Message.results.books[bookNr].description</p>
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Rank:  @ViewBag.Message.results.books[bookNr].rank</li>
+                                <li class="list-group-item">Last week rank:  @ViewBag.Message.results.books[bookNr].rank_last_week</li>
+                                <li class="list-group-item">Weeks on the list: @ViewBag.Message.results.books[bookNr].weeks_on_list</li>
+                            </ul>
+
+                            <a href="@ViewBag.Message.results.books[bookNr].amazon_product_url" class="btn btn-primary" target="_blank">Check on Amazon!</a>
+                        </div>
+                    </div>
+                </div>
+            }
+            bookNr++;
+        }
+    </div>
+}
